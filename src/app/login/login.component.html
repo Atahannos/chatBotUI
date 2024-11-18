@@ -1,0 +1,114 @@
+<div class="h-screen bg-gray-900 flex items-center justify-center">
+  <!-- Form Kutusu -->
+  <div
+    class="bg-gray-800 text-white p-8 rounded-lg shadow-lg w-full max-w-md"
+    style="
+      width: 40%;
+      min-width: 320px;
+      max-width: 480px;
+      padding: 40px;
+      border-radius: 10%;
+    "
+  >
+    <!-- Sekme Seçimi -->
+    <div class="flex justify-between border-b border-gray-700 mb-6">
+      <button
+        class="flex-1 text-center py-2 text-lg font-semibold"
+        [ngClass]="
+          currentTab === 'login'
+            ? 'border-b-2 border-blue-500 text-blue-500'
+            : 'text-gray-400'
+        "
+        (click)="setTab('login')"
+      >
+        Giriş
+      </button>
+      <button
+        class="flex-1 text-center py-2 text-lg font-semibold"
+        [ngClass]="
+          currentTab === 'signup'
+            ? 'border-b-2 border-blue-500 text-blue-500'
+            : 'text-gray-400'
+        "
+        (click)="setTab('signup')"
+      >
+        Kayıt Ol
+      </button>
+    </div>
+
+    <!-- Login Form -->
+    <form *ngIf="currentTab === 'login'" (ngSubmit)="onLogin()">
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Email</label>
+        <input
+          type="email"
+          placeholder="Emailinizi Giriniz"
+          [(ngModel)]="loginData.email"
+          name="email"
+          class="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Şifre</label>
+        <input
+          type="password"
+          placeholder="Şifrenizi Giriniz"
+          [(ngModel)]="loginData.password"
+          name="password"
+          class="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md font-semibold transition duration-300"
+      >
+        Giriş
+      </button>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form *ngIf="currentTab === 'signup'" (ngSubmit)="onSignUp()">
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Full Name</label>
+        <input
+          type="text"
+          placeholder="İsminizi Giriniz"
+          [(ngModel)]="signUpData.fullName"
+          name="fullName"
+          class="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Email</label>
+        <input
+          type="email"
+          placeholder="Emailinizi Giriniz"
+          [(ngModel)]="signUpData.email"
+          name="email"
+          class="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Şifre</label>
+        <input
+          type="password"
+          placeholder="Şifrenizi Giriniz"
+          [(ngModel)]="signUpData.password"
+          name="password"
+          class="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md font-semibold transition duration-300"
+      >
+        Kayıt Ol
+      </button>
+    </form>
+  </div>
+</div>

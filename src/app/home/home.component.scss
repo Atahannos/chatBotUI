@@ -1,0 +1,21 @@
+.chat {
+  display: flex;
+  justify-content: flex-start; /* Varsayılan olarak sola yasla */
+}
+
+.chat-end {
+  justify-content: flex-end; /* Sağa yasla */
+}
+
+.chat-start {
+  justify-content: flex-start; /* Sola yasla */
+}
+
+.chat-bubble {
+  max-width: 70%; /* Baloncuk genişliği */
+  padding: 0.5rem 1rem;
+
+  background-color: #1e293b; /* Koyu gri arka plan */
+  color: #fff; /* Beyaz metin */
+  word-wrap: break-word;
+}

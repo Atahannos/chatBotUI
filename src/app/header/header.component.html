@@ -1,0 +1,144 @@
+<nav class="bg-gray-800">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Mobile Menu Button -->
+      <div class="sm:hidden">
+        <button
+          type="button"
+          class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          (click)="toggleMenu()"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg
+            class="block h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Logo Section -->
+      <div
+        (click)="navigateTo('/home')"
+        class="flex items-center cursor-pointer"
+      >
+        <img class="h-8 w-auto" src="assets/imgs/AI-Logo.png" alt="Logo" />
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden sm:flex sm:space-x-4">
+        <a
+          href="/home"
+          class="text-white bg-gray-900 rounded-md px-3 py-2 text-sm font-medium"
+          aria-current="page"
+        >
+          Chat
+        </a>
+        <a
+          href="/about"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+        >
+          Ekibimiz
+        </a>
+        <a
+          href="/projects"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+        >
+          Projelerimiz
+        </a>
+        <a
+          href="login"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+        >
+          Geliştirme Süreci
+        </a>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <div class="relative">
+          <button
+            type="button"
+            (click)="toggleUserMenu()"
+            class="flex items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+          >
+            <span class="sr-only">Open user menu</span>
+            <img
+              class="h-8 w-8 rounded-full"
+              src="assets/imgs/atahan.jpg"
+              alt=""
+            />
+          </button>
+          <div
+            *ngIf="isUserMenuOpen"
+            class="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none z-50"
+            role="menu"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700"
+              role="menuitem"
+            >
+              Profilim
+            </a>
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700"
+              role="menuitem"
+            >
+              Ayarlar
+            </a>
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700"
+              role="menuitem"
+            >
+              Çıkış Yap
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="sm:hidden" id="mobile-menu" *ngIf="isMenuOpen">
+    <div class="space-y-1 px-2 pb-3 pt-2">
+      <a
+        href="/home"
+        class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+        aria-current="page"
+      >
+        Chat
+      </a>
+      <a
+        href="/about"
+        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+      >
+        Ekibimiz
+      </a>
+      <a
+        href="/projects"
+        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+      >
+        Projelerimiz
+      </a>
+      <a
+        href="/login"
+        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+      >
+        Geliştirme Süreci
+      </a>
+    </div>
+  </div>
+</nav>

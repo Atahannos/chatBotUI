@@ -1,0 +1,127 @@
+<div class="flex h-[90dvh]">
+  <!-- Chat Listesi -->
+  <div
+    [ngClass]="{
+      ' w-1/4': isDrawerOpen,
+      ' hidden': !isDrawerOpen
+    }"
+    class="p-4 bg-gray-800 text-white h-full"
+  >
+    <!-- Başlık -->
+    <h2 class="text-xl font-bold mb-6">Sohbetler</h2>
+
+    <!-- Günlük Sohbet Ayrımı -->
+    <div class="space-y-4">
+      <!-- Bugün -->
+      <div>
+        <h3 class="text-gray-400 uppercase text-sm mb-2">Bugün</h3>
+        <ul class="space-y-2">
+          <li>
+            <button
+              class="flex items-center w-full text-left rounded-md px-3 py-2 hover:bg-gray-700"
+              [ngClass]="{ 'bg-gray-900': selectedChatId === 1 }"
+              (click)="selectChat(1)"
+            >
+              <span
+                class="flex-shrink-0 h-8 w-8 rounded-full bg-blue-500 text-white flex items-center justify-center"
+              >
+                C
+              </span>
+              <span class="ml-3">ChatGPT</span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="flex items-center w-full text-left rounded-md px-3 py-2 hover:bg-gray-700"
+              [ngClass]="{ 'bg-gray-900': selectedChatId === 2 }"
+              (click)="selectChat(2)"
+            >
+              <span
+                class="flex-shrink-0 h-8 w-8 rounded-full bg-green-500 text-white flex items-center justify-center"
+              >
+                G
+              </span>
+              <span class="ml-3">GPT'leri Keşfet</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Önceki 7 Gün -->
+      <div>
+        <h3 class="text-gray-400 uppercase text-sm mb-2">Önceki 7 Gün</h3>
+        <ul class="space-y-2">
+          <li *ngFor="let chat of recentChats">
+            <button
+              class="flex items-center w-full text-left rounded-md px-3 py-2 hover:bg-gray-700"
+              [ngClass]="{ 'bg-gray-900': selectedChatId === chat.id }"
+              (click)="selectChat(chat.id)"
+            >
+              <span
+                class="flex-shrink-0 h-8 w-8 rounded-full bg-yellow-500 text-white flex items-center justify-center"
+              >
+                {{ chat.name[0] }}
+              </span>
+              <span class="ml-3">{{ chat.name }}</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Önceki 30 Gün -->
+      <div>
+        <h3 class="text-gray-400 uppercase text-sm mb-2">Önceki 30 Gün</h3>
+        <ul class="space-y-2">
+          <li *ngFor="let chat of olderChats">
+            <button
+              class="flex items-center w-full text-left rounded-md px-3 py-2 hover:bg-gray-700"
+              [ngClass]="{ 'bg-gray-900': selectedChatId === chat.id }"
+              (click)="selectChat(chat.id)"
+            >
+              <span
+                class="flex-shrink-0 h-8 w-8 rounded-full bg-purple-500 text-white flex items-center justify-center"
+              >
+                {{ chat.name[0] }}
+              </span>
+              <span class="ml-3">{{ chat.name }}</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mesajlaşma Alanı -->
+  <div
+    [ngClass]="{
+      'w-3/4 ': isDrawerOpen,
+      'w-full ': !isDrawerOpen
+    }"
+    class="bg-gray-100 flex flex-col"
+  >
+    <!-- Mesajlar -->
+    <div class="flex-grow p-4 overflow-y-auto space-y-4">
+      <div *ngFor="let message of messages" [ngClass]="messageClass(message)">
+        <div class="chat-bubble">{{ message.text }}</div>
+      </div>
+    </div>
+
+    <!-- Mesaj Gönderme -->
+    <div class="p-4 bg-white shadow-md">
+      <div class="flex space-x-4">
+        <input
+          type="text"
+          [(ngModel)]="newMessage"
+          placeholder="Type a message..."
+          class="flex-grow rounded-md border-gray-300 shadow-sm p-2"
+        />
+        <button
+          class="bg-blue-600 text-white rounded-md px-4 py-2"
+          (click)="sendMessage()"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

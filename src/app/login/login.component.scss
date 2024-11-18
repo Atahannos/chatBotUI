@@ -1,0 +1,37 @@
+/* Kutunun boyut ve hizalamasını düzenler */
+div.bg-white {
+  max-width: 400px; /* Genişlik */
+  padding: 2rem; /* İç boşluk */
+}
+
+/* Sekme tasarımı */
+.tabs .tab {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #f3f4f6; /* Daisy UI'den açık gri */
+  color: #1e293b; /* Koyu metin rengi */
+  cursor: pointer;
+}
+
+.tabs .tab-active {
+  border-bottom: 2px solid #2563eb; /* Mavi vurgu */
+  font-weight: bold;
+}
+
+/* Form öğeleri */
+.input {
+  background-color: #f3f4f6; /* Açık gri arka plan */
+  color: #1e293b; /* Metin rengi */
+  border: 1px solid #d1d5db; /* Açık gri kenar */
+}
+
+.btn-primary {
+  background-color: #2563eb; /* Mavi */
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8; /* Daha koyu mavi */
+}
