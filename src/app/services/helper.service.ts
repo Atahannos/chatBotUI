@@ -6,5 +6,6 @@ import { Tab } from '../class/enums/tab';
 })
 export class HelperService {
   selectedTab = signal<Tab>(Tab.HOME);
+  isLoggedIn = signal<boolean>(false);
   constructor() {}
 }

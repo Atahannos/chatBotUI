@@ -1,7 +1,7 @@
-<div class="h-screen bg-gray-900 flex items-center justify-center">
+<div class="h-screen bg-gray-800 flex items-center justify-center">
   <!-- Form Kutusu -->
   <div
-    class="bg-gray-800 text-white p-8 rounded-lg shadow-lg w-full max-w-md"
+    class="bg-gray-900 text-white p-8 rounded-lg shadow-lg w-full max-w-md"
     style="
       width: 40%;
       min-width: 320px;
@@ -39,11 +39,11 @@
     <!-- Login Form -->
     <form *ngIf="currentTab === 'login'" (ngSubmit)="onLogin()">
       <div class="mb-4">
-        <label class="block text-sm font-medium mb-2">Email</label>
+        <label class="block text-sm font-medium mb-2">Kullanıcı Adı</label>
         <input
           type="email"
-          placeholder="Emailinizi Giriniz"
-          [(ngModel)]="loginData.email"
+          placeholder="Kullanıcı Adını Giriniz"
+          [(ngModel)]="loginData.username"
           name="email"
           class="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
@@ -71,11 +71,11 @@
     <!-- Sign Up Form -->
     <form *ngIf="currentTab === 'signup'" (ngSubmit)="onSignUp()">
       <div class="mb-4">
-        <label class="block text-sm font-medium mb-2">Full Name</label>
+        <label class="block text-sm font-medium mb-2">Kullanıcı Adı</label>
         <input
           type="text"
-          placeholder="İsminizi Giriniz"
-          [(ngModel)]="signUpData.fullName"
+          placeholder="Kullanıcı Adınızı Giriniz"
+          [(ngModel)]="signUpData.username"
           name="fullName"
           class="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
@@ -110,5 +110,33 @@
         Kayıt Ol
       </button>
     </form>
+  </div>
+</div>
+<div
+  *ngIf="showLoginAlert"
+  class="fixed top-0 left-0 w-full bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md z-50"
+  role="alert"
+>
+  <div class="flex items-center">
+    <div class="py-1">
+      <svg
+        class="fill-current h-6 w-6 text-teal-500 mr-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+        />
+      </svg>
+    </div>
+    <div>
+      <p class="font-bold">Başarılı Bir Şekilde Giriş Yaptınız.</p>
+    </div>
+    <button
+      (click)="hideAlert()"
+      class="ml-auto text-teal-900 font-bold text-lg px-2 focus:outline-none"
+    >
+      ✕
+    </button>
   </div>
 </div>

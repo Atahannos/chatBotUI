@@ -1,15 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, HostListener, inject, Query } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../services/http.service';
+import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  http = inject(UserService);
+  auth = inject(AuthService);
   selectedChatId = 1;
   isDrawerOpen = true;
   screenWidth: number = window.innerWidth;
@@ -42,14 +48,23 @@ export class HomeComponent {
 
   sendMessage(): void {
     if (this.newMessage.trim()) {
-      this.messages.push({ text: this.newMessage, sender: 'user' });
-      setTimeout(() => {
-        this.messages.push({
-          text: 'Ben bir botum, size nasıl yardımcı olabilirim?',
-          sender: 'bot',
-        });
-      }, 1000);
-      this.newMessage = '';
+      const payload = { user_query: this.newMessage }; // Gerekli formatta nesne oluşturuldu
+
+      this.http.sendQuery(payload).subscribe({
+        next: (data) => {
+          console.log(data);
+          const payload = { query_id: data.data.query_id };
+          this.http.processResponse(payload).subscribe((data) => {
+            console.log(data);
+          });
+          console.log('Yanıt:', data);
+        },
+        error: (error) => {
+          console.error('Hata:', error);
+        },
+      });
+
+      this.newMessage = ''; // Mesajı temizle
     }
   }
 

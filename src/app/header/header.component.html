@@ -39,29 +39,23 @@
       <!-- Desktop Menu -->
       <div class="hidden sm:flex sm:space-x-4">
         <a
-          href="/home"
+          (click)="navigateTo('home')"
           class="text-white bg-gray-900 rounded-md px-3 py-2 text-sm font-medium"
           aria-current="page"
         >
           Chat
         </a>
         <a
-          href="/about"
+          (click)="navigateTo('about')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
         >
           Ekibimiz
         </a>
         <a
-          href="/projects"
+          (click)="navigateTo('projects')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
         >
           Projelerimiz
-        </a>
-        <a
-          href="login"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-        >
-          Geliştirme Süreci
         </a>
       </div>
 
@@ -88,20 +82,7 @@
               href="#"
               class="block px-4 py-2 text-sm text-gray-700"
               role="menuitem"
-            >
-              Profilim
-            </a>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700"
-              role="menuitem"
-            >
-              Ayarlar
-            </a>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700"
-              role="menuitem"
+              (click)="logout()"
             >
               Çıkış Yap
             </a>
@@ -115,29 +96,23 @@
   <div class="sm:hidden" id="mobile-menu" *ngIf="isMenuOpen">
     <div class="space-y-1 px-2 pb-3 pt-2">
       <a
-        href="/home"
+        (click)="navigateTo('home')"
         class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
         aria-current="page"
       >
         Chat
       </a>
       <a
-        href="/about"
+        (click)="navigateTo('about')"
         class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
       >
         Ekibimiz
       </a>
       <a
-        href="/projects"
+        (click)="navigateTo('projects')"
         class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
       >
         Projelerimiz
-      </a>
-      <a
-        href="/login"
-        class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-      >
-        Geliştirme Süreci
       </a>
     </div>
   </div>

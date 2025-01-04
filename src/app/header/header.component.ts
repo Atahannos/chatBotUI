@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { HelperService } from '../services/helper.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -15,16 +16,17 @@ export class HeaderComponent {
   isMenuOpen = false;
   router = inject(Router);
   helper = inject(HelperService);
+  auth = inject(AuthService);
 
-  // Menü aç/kapa işlevi
   toggleUserMenu(): void {
-    this.isUserMenuOpen = !this.isUserMenuOpen;
+    if (this.auth.isLoggedIn()) {
+      this.isUserMenuOpen = !this.isUserMenuOpen;
+    }
   }
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  // Menü dışına tıklanınca kapatma
   @HostListener('document:click', ['$event'])
   closeMenuOnOutsideClick(event: MouseEvent): void {
     const targetElement = event.target as HTMLElement;
@@ -34,5 +36,9 @@ export class HeaderComponent {
   }
   navigateTo(route: string) {
     this.router.navigate([route]);
+  }
+  logout() {
+    this.auth.logout();
+    this.navigateTo('login');
   }
 }
