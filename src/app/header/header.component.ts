@@ -17,6 +17,7 @@ export class HeaderComponent {
   router = inject(Router);
   helper = inject(HelperService);
   auth = inject(AuthService);
+  
 
   toggleUserMenu(): void {
     if (this.auth.isLoggedIn()) {

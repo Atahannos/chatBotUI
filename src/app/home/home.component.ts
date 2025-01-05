@@ -48,26 +48,34 @@ export class HomeComponent {
 
   sendMessage(): void {
     if (this.newMessage.trim()) {
+      // Kullanıcıdan gelen mesajı diziye ekleyelim
+      this.messages.push({ text: this.newMessage, sender: 'user' });
+  
       const payload = { user_query: this.newMessage }; // Gerekli formatta nesne oluşturuldu
-
+  
       this.http.sendQuery(payload).subscribe({
         next: (data) => {
           console.log(data);
-          const payload = { query_id: data.data.query_id };
-          this.http.processResponse(payload).subscribe((data) => {
-            console.log(data);
+  
+          const queryPayload = { query_id: data.data.query_id };
+          this.http.processResponse(queryPayload).subscribe((response) => {
+            console.log(response);
+  
+            // Bot'tan dönen mesajı diziye ekleyelim
+            if (response && response.message) {
+              this.messages.push({ text: response.message, sender: 'bot' });
+            }
           });
-          console.log('Yanıt:', data);
         },
         error: (error) => {
           console.error('Hata:', error);
         },
       });
-
-      this.newMessage = ''; // Mesajı temizle
+  
+      // Mesaj girişini temizle
+      this.newMessage = '';
     }
   }
-
   messageClass(message: { sender: 'user' | 'bot' }): string {
     return message.sender === 'user' ? 'chat chat-end' : 'chat chat-start';
   }
